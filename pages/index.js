@@ -1,20 +1,20 @@
-import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../libs/posts'
-import Link from 'next/link'
-import Date from '../components/date'
+import Head from "next/head";
+import Layout, { siteTitle } from "../components/layout";
+import utilStyles from "../styles/utils.module.css";
+import { getSortedPostsData } from "../libs/posts";
+import { getAboutData } from "../libs/about";
+import Link from "next/link";
+import Date from "../components/date";
 
-export default function Home({ allPostsData }) {
+export default function Home({ aboutData, allPostsData }) {
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>
-          Hello, I’m <strong>Zihan Ma</strong>.
-        </p>
+        <h2 className={utilStyles.headingLg}>{aboutData.title}</h2>
+        <div dangerouslySetInnerHTML={{ __html: aboutData.contentHtml }} />
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
@@ -33,14 +33,16 @@ export default function Home({ allPostsData }) {
         </ul>
       </section>
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
+  const aboutData = await getAboutData();
+  const allPostsData = getSortedPostsData();
   return {
     props: {
-      allPostsData
-    }
-  }
+      aboutData,
+      allPostsData,
+    },
+  };
 }
