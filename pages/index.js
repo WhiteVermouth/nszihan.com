@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../libs/posts";
-import { getAboutData } from "../libs/about";
+import { getSortedPostsData } from "../lib/posts";
+import { getAboutData } from "../lib/about";
 import Link from "next/link";
 import Date from "../components/date";
 

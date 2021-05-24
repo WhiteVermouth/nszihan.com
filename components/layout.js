@@ -12,10 +12,7 @@ export default function Layout({ children, home }) {
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Zihan's Blog"
-        />
+        <meta name="description" content="Zihan's Blog" />
         <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
